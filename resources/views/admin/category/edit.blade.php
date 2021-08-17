@@ -1,0 +1,49 @@
+@extends('layouts.backend.master')
+
+@section('header','Category Edit')
+
+@section('content')
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card card-secondary">
+            <div class="card-header">
+                <h3 class="card-title">Edit Category</h3>
+            </div>
+            <form action="{{ route('admin.category.update',$category->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input name="name" type="text" class="form-control @error('name') is-invalid @enderror"
+                            value="{{ $category->name }}">
+                        @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">Image</label>
+                        <div class="input-group">
+                          <div class="custom-file">
+                            <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror" id="exampleInputFile">
+                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                          </div>
+                        </div>
+                        @error('image')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                      </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endsection
+

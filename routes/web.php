@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,19 @@ use App\Http\Controllers\DashboardController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/home',function () {
     return view('home');
+});
+
+Route::get('/auth',function () {
+    return view('admin.dashboard');
+});
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'],function(){
+    Route::resource('category',CategoryController::class);
 });
 
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
