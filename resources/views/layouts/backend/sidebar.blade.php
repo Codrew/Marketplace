@@ -35,8 +35,9 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
        with font-awesome or any other icon font library -->
-                <li class="nav-item menu-open">
-                    <a href="#" class="nav-link active">
+                @if(Request::is('admin/*'))
+                <li class="nav-item">
+                    <a href="#" class="nav-link {{ Request::is('admin/category*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
                             Category
@@ -59,14 +60,52 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
+                    <a href="#" class="nav-link {{ Request::is('admin/subcategory*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
                         <p>
-                            Simple Link
-                            <span class="right badge badge-danger">New</span>
+                            Subcategory
+                            <i class="right fas fa-angle-left"></i>
                         </p>
                     </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.subcategory.create') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Add</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.subcategory.index') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Manage</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link {{ Request::is('admin/childcategory*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>
+                            Childcategory
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.childcategory.create') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Add</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.childcategory.index') }}" class="nav-link">
+                                <i class="fas fa-circle nav-icon"></i>
+                                <p>Manage</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

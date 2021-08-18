@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\{
+    CategoryController,SubcategoryController,ChildCategoryController
+};
+use App\Http\Controllers\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +18,6 @@ use App\Http\Controllers\Admin\CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
 Route::get('/home',function () {
     return view('home');
 });
@@ -29,6 +28,10 @@ Route::get('/auth',function () {
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'],function(){
     Route::resource('category',CategoryController::class);
+    Route::resource('subcategory',SubcategoryController::class);
+    Route::resource('childcategory',ChildCategoryController::class);
 });
+
+Route::get('/',[MenuController::class,'menu']);
 
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
