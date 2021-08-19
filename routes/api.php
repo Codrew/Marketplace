@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\{ApiCategoryController, ApiAddressController};
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/category',[ApiCategoryController::class,'getCategory']);
+Route::get('/subcategory ',[ApiCategoryController::class,'getSubcategory']);
+Route::get('/childcategory',[ApiCategoryController::class,'getChildcategory']);
+
+Route::get('/city',[ApiAddressController::class,'getCity']);
+Route::get('/state ',[ApiAddressController::class,'getState']);
+Route::get('/country',[ApiAddressController::class,'getCountry']);

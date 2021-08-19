@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdvertisementController;
 use App\Http\Controllers\Admin\{
     CategoryController,SubcategoryController,ChildCategoryController
 };
@@ -31,7 +32,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'],function(){
     Route::resource('subcategory',SubcategoryController::class);
     Route::resource('childcategory',ChildCategoryController::class);
 });
+Route::resource('ads',AdvertisementController::class)->middleware('auth');
 
 Route::get('/',[MenuController::class,'menu']);
 
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
+
