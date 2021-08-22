@@ -1,29 +1,33 @@
 <template>
-      <div>
-        <input type="file" name="second_image" @change="onFileChange" class="custom-file-upload" 
-        required="" accept="image/*">
+    <div>
+        <input
+            type="file"
+            name="second_image"
+            @change="onFileChange"
+            class="custom-file-upload"
+            accept="image/*"
+        />
         <div id="preview" class="mt-2">
-            <img v-if="url" :src="url" width="100" height="60">
+            <img v-if="url" :src="url" width="100" height="60" />
         </div>
-    </div>    
+    </div>
 </template>
 
 <script>
 export default {
-    data(){
+    data() {
         return {
-            url: ''
-        }
+            url: "",
+        };
     },
-    methods:{
-        onFileChange(e){
-            const file = e.target.files[0]
-            this.url = URL.createObjectURL(file)
-        }
-    }
-}
+    methods: {
+        onFileChange(e) {
+            const file = e.target.files[0];
+            this.url = URL.createObjectURL(file);
+        },
+    },
+};
 </script>
 
 <style>
-
 </style>

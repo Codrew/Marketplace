@@ -61,6 +61,7 @@
                 display: none
             }
         }
+
     </style>
     @stack('css')
 </head>
@@ -88,36 +89,36 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                        @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @endif
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
 
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
                         @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault();
-                                                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
                         @endguest
                     </ul>
                 </div>
@@ -131,28 +132,29 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarHover">
                 <ul class="container navbar-nav">
-                    @foreach($menus as $menuItem)
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href=""
-                            data-toggle="dropdown_remove_dropdown_class_for_clickable_link" aria-haspopup="true"
-                            aria-expanded="false">
-                            {{ $menuItem->name }}
-                        </a>
-                        <ul class="dropdown-menu">
-                            @foreach($menuItem->subcategory as $menuSub)
-                            <li>
-                                <a class="dropdown-item dropdown-toggle" href="">{{ $menuSub->name }}</a>
-                                <ul class="dropdown-menu">
-                                    @foreach($menuSub->childcategory as $menuChild)
+                    @foreach ($menus as $menuItem)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href=""
+                                data-toggle="dropdown_remove_dropdown_class_for_clickable_link" aria-haspopup="true"
+                                aria-expanded="false">
+                                {{ $menuItem->name }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                @foreach ($menuItem->subcategory as $menuSub)
                                     <li>
-                                        <a class="dropdown-item" href="">{{ $menuChild->name }}</a>
+                                        <a class="dropdown-item dropdown-toggle"
+                                            href="{{ route('subcategory.show', [$menuItem->slug, $menuSub->slug]) }}">{{ $menuSub->name }}</a>
+                                        <ul class="dropdown-menu">
+                                            @foreach ($menuSub->childcategory as $menuChild)
+                                                <li>
+                                                    <a class="dropdown-item" href="">{{ $menuChild->name }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                     </li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
                     @endforeach
                 </ul>
             </div>

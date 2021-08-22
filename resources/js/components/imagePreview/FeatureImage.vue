@@ -1,11 +1,11 @@
 <template>
       <div>
-        <input type="file" name="feature_image" @change="onFileChange" class="custom-file-upload" 
-        required="" accept="image/*">
+        <input type="file" name="feature_image" @change="onFileChange" class="custom-file-upload"
+         accept="image/*">
         <div id="preview" class="mt-2">
             <img v-if="url" :src="url" width="100" height="60">
         </div>
-    </div>    
+    </div>
 </template>
 
 <script>

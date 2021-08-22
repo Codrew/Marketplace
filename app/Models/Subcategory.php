@@ -11,6 +11,11 @@ class Subcategory extends Model
 
     protected $fillable = ['name','category_id','slug'];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -19,5 +24,10 @@ class Subcategory extends Model
     public function childcategory()
     {
         return $this->hasMany(Childcategory::class);
+    }
+
+    public function ads()
+    {
+        return $this->
     }
 }
