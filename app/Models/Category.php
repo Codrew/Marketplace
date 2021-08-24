@@ -15,4 +15,14 @@ class Category extends Model
     {
         return $this->hasMany(Subcategory::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function ads()
+    {
+        return $this->hasMany(Advertisement::class);
+    }
 }

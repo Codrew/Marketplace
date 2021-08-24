@@ -110,7 +110,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                     document.getElementById('logout-form').submit();">
+                                                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -134,7 +134,7 @@
                 <ul class="container navbar-nav">
                     @foreach ($menus as $menuItem)
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href=""
+                            <a class="nav-link dropdown-toggle" href="{{ route('category.show', $menuItem->slug) }}"
                                 data-toggle="dropdown_remove_dropdown_class_for_clickable_link" aria-haspopup="true"
                                 aria-expanded="false">
                                 {{ $menuItem->name }}
@@ -147,7 +147,8 @@
                                         <ul class="dropdown-menu">
                                             @foreach ($menuSub->childcategory as $menuChild)
                                                 <li>
-                                                    <a class="dropdown-item" href="">{{ $menuChild->name }}</a>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('childcategory.show', [$menuItem->slug, $menuSub->slug, $menuChild->slug]) }}">{{ $menuChild->name }}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
