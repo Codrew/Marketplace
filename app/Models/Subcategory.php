@@ -28,6 +28,6 @@ class Subcategory extends Model
 
     public function ads()
     {
-        return $this->
+        return $this->hasMany(Advertisement::class);
     }
 }

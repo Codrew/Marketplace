@@ -11,8 +11,18 @@ class Childcategory extends Model
 
     protected $fillable = ['name','slug','subcategory_id'];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function subcategory()
     {
         return $this->belongsTo(Subcategory::class);
+    }
+
+    public function ads()
+    {
+        return $this->hasMany(Advertisement::class);
     }
 }

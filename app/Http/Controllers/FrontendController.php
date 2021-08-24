@@ -5,15 +5,49 @@ namespace App\Http\Controllers;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Models\Advertisement;
+use App\Models\Childcategory;
 
 class FrontendController extends Controller
 {
-    public function findBasedOnSubCategory($categorySlug, $subcategorySlug)
+    public function findBasedOnSubCategory(
+        Request $request, $categorySlug, Subcategory $subcategorySlug)
     {
-        $sub = Subcategory::where('slug',$subcategorySlug)->first();
-        $subId = $sub->id;
-        $ads = Advertisement::where('subcategory_id',$subId)->get();
-        dd($ads);
-        return view('product.subcategory');
+        $adsBaseOnFilter = Advertisement::where('subcategory_id',$subcategorySlug->id)
+        ->when($request->minPrice, function($query,$minPrice){
+            return $query->where('price','>=',$minPrice);
+        })->when($request->maxPrice,function($query,$maxPrice){
+            return $query->where('price','<=',$maxPrice);
+        })->get();
+
+        $adsWithoutFilter = $subcategorySlug->ads;
+
+        $filterBychildCategory = $subcategorySlug->ads->unique('childcategory_id');
+
+        $ads = $request->minPrice || $request->maxPrice ?
+
+        $adsBaseOnFilter:$adsWithoutFilter;
+
+        return view('product.subcategory',compact('ads','filterBychildCategory'));
+    }
+
+    public function findBasedOnChildCategory(
+        Request $request, $categorySlug, Subcategory $subcategorySlug, Childcategory $childcategorySlug)
+    {
+        $adsBaseOnFilter = Advertisement::where('childcategory_id',$childcategorySlug->id)
+        ->when($request->minPrice, function($query,$minPrice){
+            return $query->where('price','>=',$minPrice);
+        })->when($request->maxPrice,function($query,$maxPrice){
+            return $query->where('price','<=',$maxPrice);
+        })->get();
+
+        $adsWithoutFilter = $childcategorySlug->ads;
+
+        $filterBychildCategory = $subcategorySlug->ads->unique('childcategory_id');
+
+        $ads = $request->minPrice || $request->maxPrice ?
+
+        $adsBaseOnFilter:$adsWithoutFilter;
+        
+        return view('product.childcategory',compact('ads','filterBychildCategory'));
     }
 }

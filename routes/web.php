@@ -24,7 +24,11 @@ Route::get('/auth',function () {
     return view('admin.dashboard');
 });
 
-Route::get('/product/{categorySlug}/{subcategorySlug}',[FrontendController::class, 'findBasedOnSubCategory'])->name('subcategory.show');
+Route::get('/product/{categorySlug}/{subcategorySlug}',[FrontendController::class, 'findBasedOnSubCategory'])
+->name('subcategory.show');
+Route::get('/product/{categorySlug}/{subcategorySlug}/{childcategorySlug}',[FrontendController::class, 'findBasedOnChildCategory'])
+->name('childcategory.show');
+
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'],function(){
     Route::resource('category',CategoryController::class);
