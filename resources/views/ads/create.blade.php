@@ -70,7 +70,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea type="text" class="form-control" name="description"></textarea>
+                                <textarea type="text" class="form-control" id="mytextarea" name="description"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Price</label>

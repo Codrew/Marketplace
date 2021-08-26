@@ -89,7 +89,7 @@
                                         <td><a href="{{ route('ads.edit', $ad->id) }}"
                                                 class="btn btn-primary btn-sm">Edit</a></td>
                                         <td>
-                                            <button class="btn btn-secondary btn-sm">View</button>
+                                            <a target="_blank" href="{{ route('product.show',[$ad->id, $ad->slug]) }}" class="btn btn-secondary btn-sm">View</a>
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-danger" data-toggle="modal"

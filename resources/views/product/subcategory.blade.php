@@ -11,7 +11,7 @@
                         @foreach ($filterBychildCategory as $filter)
                             <p>
                                 <a
-                                    href="{{ url()->current() }}/{{ $filter->childcategory->slug ?? '' }}">{{ $filter->childcategory->name ?? '' }}</a>
+                                    href="{{ url()->current() }}/{{ ($filter->childcategory->slug) ?? '' }}">{{ $filter->childcategory->name ?? '' }}</a>
                             </p>
                         @endforeach
                     </div>

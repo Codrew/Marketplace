@@ -20,74 +20,41 @@
 <div class="container mt-5">
     <span>
         <h1>Car</h1>
-        <a href="#" class="float-right">View all</a>
+        <a href="{{ route('category.show',$category->slug) }}" class="float-right">View all</a>
     </span>
-    <div id="carouselExampleFade" class="carousel slide " data-ride="carousel" data-interval="2500">
+    <br>
+    <div id="carouselExampleFade" class="carousel slide" data-ride="carousel" data-interval="2500">
         <div class="carousel-inner">
 
             <div class="carousel-item active">
                 <div class="row">
+                    @forelse($ads as $key=>$ad)
                     <div class="col-3">
-                        <img src="/product/car1.jpg" class="img-thumbnail">
+                        <a href="{{ route('product.show',[$ad->id,$ad->slug]) }}">
+                        <img src="{{ Storage::url($ad->feature_image) }}" class="img-thumbnail">
                         <p class="text-center  card-footer" style="color: blue;">
-                            Name of product/$500
+                            {{ $ad->name }} <span class="text-danger">${{ $ad->price }}<span>
                         </p>
+                        </a>
                     </div>
-
-                    <div class="col-3">
-                        <img src="/product/car1.jpg" class="img-thumbnail">
-                        <p class="text-center  card-footer">
-                            Name of product/$500
-                        </p>
-                    </div>
-
-                    <div class="col-3">
-                        <img src="/product/car1.jpg" class="img-thumbnail">
-                        <p class="text-center  card-footer">
-                            Name of product/$500
-                        </p>
-                    </div>
-
-                    <div class="col-3">
-                        <img src="/product/car1.jpg" class="img-thumbnail">
-                        <p class="text-center  card-footer">
-                            Name of product/$500
-                        </p>
-                    </div>
-
+                    @empty
+                    @endforelse
                 </div>
             </div>
 
             <div class="carousel-item">
                 <div class="row">
+                    @forelse($ads2 as $key=>$ad)
                     <div class="col-3">
-                        <img src="/product/car2.jpg" class="img-thumbnail">
-                        <p class="text-center  card-footer">
-                            Name of product/$500
+                        <a href="{{ route('product.show',[$ad->id,$ad->slug]) }}">
+                        <img src="{{ Storage::url($ad->feature_image) }}" class="img-thumbnail">
+                        <p class="text-center  card-footer" style="color: blue;">
+                            {{ $ad->name }} <span class="text-danger">${{ $ad->price }}<span>
                         </p>
+                        </a>
                     </div>
-
-                    <div class="col-3">
-                        <img src="/product/car2.jpg" class="img-thumbnail">
-                        <p class="text-center  card-footer">
-                            Name of product/$500
-                        </p>
-                    </div>
-
-                    <div class="col-3">
-                        <img src="/product/car2.jpg" class="img-thumbnail">
-                        <p class="text-center  card-footer">
-                            Name of product/$500
-                        </p>
-                    </div>
-
-                    <div class="col-3">
-                        <img src="/product/car2.jpg" class="img-thumbnail">
-                        <p class="text-center  card-footer">
-                            Name of product/$500
-                        </p>
-                    </div>
-
+                    @empty
+                    @endforelse
                 </div>
             </div>
         </div>

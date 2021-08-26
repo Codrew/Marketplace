@@ -104,10 +104,15 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    
+                                    <a class="dropdown-item" href="{{ route('ads.index')}}">
+                                        Ads
+                                    </a>
+        
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                                                                                              document.getElementById('logout-form').submit();">
@@ -173,6 +178,12 @@
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
     </script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdn.tiny.cloud/1/cjunujrlznff7099easlis9bmyn2qp18c6zsiaobewfn7gld/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+          selector: '#mytextarea'
+        });
+      </script>
     @stack('js')
 </body>
 
