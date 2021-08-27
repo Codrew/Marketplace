@@ -32,4 +32,9 @@ class Category extends Model
     {
         return $query->where('name','game')->first();
     }
+
+    public function scopeCategoryMovie($query)
+    {
+        return $query->where('name','movie')->first();
+    }
 }

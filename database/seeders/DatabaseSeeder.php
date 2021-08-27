@@ -16,7 +16,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([CountryTableSeeder::class,CityTableSeeder::class,StateTableSeeder::class]);
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            CountryTableSeeder::class, CityTableSeeder::class, 
+            StateTableSeeder::class, UserTableSeeder::class
+        ]);
     }
 }

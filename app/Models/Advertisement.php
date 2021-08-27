@@ -42,6 +42,21 @@ class Advertisement extends Model
         ->toArray())->take(4)->get();
     }
 
+    //Scope
+    public function scopeAdsMovie($query,$categoryId)
+    {
+        return $query->where('category_id',$categoryId)->orderBy('id')->take(4)->get();
+    }
+
+    //Scope 2
+    public function scopeAds2Movie($query,$categoryId)
+    {
+        $ads = $this->scopeAds($query,$categoryId);
+
+        return $query->where('category_id',$categoryId)->whereNotIn('id',$ads->pluck('id')
+        ->toArray())->take(4)->get();
+    }
+
     public function childcategory()
     {
         return $this->hasOne(Childcategory::class,'id','childcategory_id');
