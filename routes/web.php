@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontAdsController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\SendMessageController;
 use App\Http\Controllers\Admin\{ CategoryController, SubcategoryController, ChildCategoryController };
 use App\Http\Controllers\{ MenuController, AdvertisementController, ProfileController, DashboardController };
 
@@ -44,4 +45,9 @@ Route::post('profile',[ProfileController::class,'updateProfile'])->middleware('a
 Route::get('/',[FrontAdsController::class,'index']);
 
 Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard');
+
+//Message
+Route::post('/send/message',[SendMessageController::class,'store'])->name('message.store');
+Route::get('message',[SendMessageController::class,'index'])->name('message.index');
+Route::get('users',[SendMessagecontroller::class,'user'])->name('message.user');
 

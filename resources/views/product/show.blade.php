@@ -65,7 +65,19 @@
             @else
             <img src="{{ Storage::url($ads->user->avatar) }}" width="120">
             @endif
-            <p>{{ $ads->user->name }}</p>
+            <p>
+                {{ $ads->user->name }}
+                @If(Auth::check())
+                <span>
+                    <message
+                    seller-name = "{{ $ads->user->name }}" 
+                    :user-id = "{{ auth::user()->id }}"
+                    :reciver-id = "{{ $ads->user->id }}"
+                    :ad-id = "{{ $ads->id }}"
+                    />
+                </span>
+                @endif
+            </p>
         </div>
     </div>
 </div>

@@ -11,6 +11,8 @@ Vue.component('first-preview', require('./components/imagePreview/FirstImage.vue
 Vue.component('second-preview', require('./components/imagePreview/SecondImage.vue').default);
 Vue.component('category-dropdown', require('./components/CategoryDropdown.vue').default);
 Vue.component('address-dropdown', require('./components/AddressDropdown.vue').default);
+Vue.component('message', require('./components/Message.vue').default);
+Vue.component('conversation', require('./components/Conversation.vue').default);
 
 const app = new Vue({
     el: '#app',
